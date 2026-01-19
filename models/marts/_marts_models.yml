@@ -1,0 +1,46 @@
+models:
+  - name: dim_customers
+    description: This model provides a comprehensive view of customers by combining customer details with their order history. It includes personal information such as first and last names, and order-related data like the date of the first and most recent orders, as well as the total number of orders placed by each customer. This model is useful for analyzing customer behavior and order patterns.
+    columns:
+      - name: customer_id
+        description: A unique identifier for each customer. (Primary key)
+        data_tests:
+          - unique
+          - not_null
+      - name: first_name
+        description: The first name of the customer.
+        data_tests:
+          - not_null
+      - name: last_name
+        description: The last name of the customer.
+        data_tests:
+          - not_null
+      - name: first_order_date
+        description: The date when the customer placed their first order. This is NULL if no order exists for the customer
+      - name: most_recent_order_date
+        description: The date when the customer placed their most recent order. This is NULL if no order exists for the customer
+      - name: most_recent_order_date
+      - name: number_of_orders
+        description: The total number of orders placed by the customer.
+  - name: fct_orders
+    description: This model provides a detailed view of orders, 
+      capturing essential information such as the order ID, customer ID, 
+      order date, and status. It serves as a foundational dataset for analyzing order trends and customer purchasing behavior.
+    columns:
+      - name: order_id
+        description: A unique identifier for each order.
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: A unique identifier for the customer who placed the order.
+        tests:
+          - not_null
+      - name: order_date
+        description: The date when the order was placed.
+        tests:
+          - not_null
+      - name: status
+        description: The current status of the order, indicating its progress in the fulfillment process.
+        tests:
+          - not_null
